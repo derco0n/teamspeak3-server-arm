@@ -91,6 +91,27 @@ You can run the "recover.sh" inside the container as well, it'll do the same.
 ### Debug
 If you want to enter debug mode you can either set the env for a permanent debug mode, or just create a empty file called "debug" inside the "save"-folder and restart the container.
 
+### Docker-Compose-example
+'''docker
+version: "3.4"
+services:
+  
+  ts3:
+    # You may select a different image here
+    image: ertagh/teamspeak3-server:latest-box
+    restart: unless-stopped
+    volumes:
+      - /opt/containers/teamspeak/:/teamspeak/save/
+    environment:
+      # Adjust environment variables to your needs
+      DIST_UPDATE: 1
+      TS_UPDATE: 1
+      TIME_ZONE: Europe/Berlin
+    ports:
+      - "9987:9987/udp"
+      - "10011:10011/tcp"
+      - "30033:30033/tcp"
+'''
 
 <br/>
 <br/>
